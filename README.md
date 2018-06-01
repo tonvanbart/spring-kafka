@@ -16,7 +16,12 @@ With authentication enabled, add userid and password:
 
     curl -i -u user:s3cr3t localhost:8080/messages
 
-In both cases, the output should look something like this:
+If you want to use [HTTPie](https://httpie.org/) you have to pass the `--stream` flag to see the
+streamed events:
+
+    http --auth user:s3cr3t --stream :8080/messages
+
+In all cases, the output should look something like this:
 
     HTTP/1.1 200 OK
     transfer-encoding: chunked
@@ -32,6 +37,7 @@ In both cases, the output should look something like this:
 
     data:Message 15
 
+A new message should appear every 2 seconds.
 Press Ctrl-C to stop listening to the events. The application has some logging to
 show you what is going on during the process.
 
