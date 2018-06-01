@@ -28,6 +28,12 @@ public class SseController {
         return messageConsumer.followMessages();
     }
 
+    @GetMapping(path="/messages-secure", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<String> messagesSecure() {
+        log.info("messagesSecure()");
+        return messageConsumer.followMessages();
+    }
+
     @GetMapping(path="/test", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> test() {
         log.info("test()");
