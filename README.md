@@ -10,5 +10,28 @@ To run it, I use a Spotify Docker image which contains Kafka and Zookeeper (so I
 The application contains a message producer which will send a message every 2 seconds.
 You can get a HTTP event stream showing the messages using `curl`:
 
-    curl localhost:8080/messages
+    curl -i localhost:8080/messages
+
+With authentication enabled, add userid and password:
+
+    curl -i -u user:s3cr3t localhost:8080/messages
+
+In both cases, the output should look something like this:
+
+    HTTP/1.1 200 OK
+    transfer-encoding: chunked
+    Content-Type: text/event-stream;charset=UTF-8
+    Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+    Pragma: no-cache
+    Expires: 0
+    X-Content-Type-Options: nosniff
+    X-Frame-Options: DENY
+    X-XSS-Protection: 1 ; mode=block
+
+    data:Message 14
+
+    data:Message 15
+
+Press Ctrl-C to stop listening to the events. The application has some logging to
+show you what is going on during the process.
 
