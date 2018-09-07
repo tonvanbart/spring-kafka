@@ -19,7 +19,7 @@ With authentication enabled, add userid and password:
 If you want to use [HTTPie](https://httpie.org/) you have to pass the `--stream` flag to see the
 streamed events:
 
-    http --auth user:s3cr3t --stream :8080/messages
+    http --auth user:password --stream :8080/messages
 
 In all cases, the output should look something like this:
 
