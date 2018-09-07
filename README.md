@@ -14,7 +14,7 @@ You can get a HTTP event stream showing the messages using `curl`:
 
 With authentication enabled, add userid and password:
 
-    curl -i -u user:s3cr3t localhost:8080/messages
+    curl -i -u user:password localhost:8080/messages
 
 If you want to use [HTTPie](https://httpie.org/) you have to pass the `--stream` flag to see the
 streamed events:
