@@ -27,6 +27,12 @@ public class FiboProducer {
   @Scheduled(fixedRate = 1000L)
   public synchronized void sendMessage() {
     int nextSecond = first + second;
+
+    if (isOverflowed(nextSecond)) {
+      first = 0;
+      second = 1;
+      nextSecond = 1;
+    }
     first = second;
     second = nextSecond;
 
@@ -34,5 +40,8 @@ public class FiboProducer {
     kafkaTemplate.send("fibonacci", String.format("Message %s", first));
   }
 
+  private boolean isOverflowed(int number) {
+    return number < 0;
+  }
 
 }
